@@ -19,39 +19,39 @@ const initialState = [
 
 function App() {
   const [state, setState] = useState(initialState);
+  
+  const increment = id => {
+    const updateValue = state.map((c => {
+      if (c.id === id) {
+        return {
+          ...c,
+          count: c.count + 1
+        }
+      }
+      return {
+        ...c,
+      }
+    }))
+
+    setState(updateValue)
+  }
+  const decrement = id => {
+    const updateValue = state.map((c => {
+      if (c.id === id) {
+        return {
+          ...c,
+          count: c.count - 1
+        }
+      }
+      return {
+        ...c,
+      }
+    }))
+
+    setState(updateValue)
+  }
   const totalCount = () => {
     return state.reduce((total, counter) => total + counter.count, 0);
-  };
-
-  const increment = (id) => {
-    const updatedCounter = state.map((c) => {
-      if (c.id === id) {
-        return {
-          ...c,
-          count: c.count + 1,
-        };
-      }
-      return {
-        ...c,
-      };
-    });
-
-    setState(updatedCounter);
-  };
-
-  const decrement = (id) => {
-    const updatedCounter = state.map((c) => {
-      if (c.id === id) {
-        return {
-          ...c,
-          count: c.count - 1,
-        };
-      }
-      return {
-        ...c,
-      };
-    });
-    setState(updatedCounter);
   };
   return (
     <div className="w-screen h-screen p-10 bg-gray-100 text-slate-700">
@@ -60,15 +60,9 @@ function App() {
       </h1>
 
       <div className="max-w-md mx-auto mt-10 space-y-5">
-        {state.map((count) => (
-          <Counter
-            id={count.id}
-            increment={increment}
-            decrement={decrement}
-            count={count.count}
-            key={count.id}
-          />
-        ))}
+        {
+          state.map(count => (<Counter key={count.id} increment={increment} decrement={decrement} countObj={count} />))
+        }
         <Stats count={totalCount()} />
       </div>
     </div>

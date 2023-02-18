@@ -1,7 +1,7 @@
 import Button from "./Button";
 import Count from "./Count";
 
-const Counter = ({ id, count, increment, decrement }) => {
+const Counter = ({countObj: {id, count}, increment, decrement}) => {
   return (
     <div className="p-4 h-auto flex flex-col items-center justify-center space-y-5 bg-white rounded shadow">
       <Count count={count} />
