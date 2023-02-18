@@ -49,6 +49,9 @@ const render = () => {
 
 store.subscribe(render);
 
+// Initially Update ui
+render();
+
 // // Create Initial State
 // const initialState = {
 //   value: 0,
