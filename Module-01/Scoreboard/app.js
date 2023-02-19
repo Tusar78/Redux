@@ -54,14 +54,24 @@ const createReducer = (state = initialState, action) => {
 const store = Redux.createStore(createReducer);
 
 incrementF.addEventListener('change', () => {
-  let incValue = incrementF.value;
+  let incValue = +incrementF.value;
   store.dispatch(increment(incValue));
+})
+
+decrementF.addEventListener('change', () => {
+  let incValue = +decrementF.value;
+  store.dispatch(decrement(incValue));
 })
 
 // Subscribe Function
 const render = () => {
   const state = store.getState();
-  matchResult.innerText = state.value;
+  const scoreValue = state.value;
+  if (scoreValue > 0) {
+    matchResult.innerText = state.value;
+  } else {
+    matchResult.innerText = 0;
+  }
 }
 
 render()
