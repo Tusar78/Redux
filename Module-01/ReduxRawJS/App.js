@@ -10,6 +10,10 @@ const DECREMENT = 'decrement';
 // Initialize Count 
 const initializeValue = {
   value: 0,
+  properties: {
+    a: 4,
+    b: 5
+  }
 }
 
 const increment = (value) => {
@@ -28,17 +32,27 @@ const decrement = (value) => {
 
 // Create Redux Reducer
 const createReducer = (state = initializeValue, {type, payload}) => {
-  if (type === 'increment') {
+  if (type === INCREMENT) {
     return {
       ...state,
       value: state.value + payload
     }
-  } else if (type === 'decrement') {
+  } else if (type === DECREMENT) {
     return {
       ...state,
       value: state.value - payload
     }
-  } else {
+  } else if (type === ITEST) {
+    const updatedState = {
+      ...state,
+      properties: {
+        ...state.properties,
+        a: state.properties.a + 10
+      }
+    }
+    return updatedState;
+  }
+  else {
     return state;
   }
 }
