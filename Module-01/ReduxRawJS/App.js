@@ -3,48 +3,51 @@ const counterEl = document.getElementById("counter");
 const incrementEl = document.getElementById("increment");
 const decrementEl = document.getElementById("decrement");
 
-// Initialize Value
-const initializeValue = {
-  value: 0,
-};
+// 
 
-// Create Reducer Function
-const createReducer = (state = initializeValue, { type, payload }) => {
-  if (type === "increment") {
-    return {
-      ...state,
-      value: state.value + payload,
-    };
-  } else if (type === "decrement") {
-    return {
-      ...state,
-      value: state.value - payload,
-    };
-  } else {
-    return state;
-  }
-};
 
-const store = Redux.createStore(createReducer);
+// // Initialize Value
+// const initializeValue = {
+//   value: 0,
+// };
 
-// Event Listening - Dispatch
-incrementEl.addEventListener("click", () => {
-  store.dispatch({
-    type: "increment",
-    payload: 5,
-  });
-});
+// // Create Reducer Function
+// const createReducer = (state = initializeValue, { type, payload }) => {
+//   if (type === "increment") {
+//     return {
+//       ...state,
+//       value: state.value + payload,
+//     };
+//   } else if (type === "decrement") {
+//     return {
+//       ...state,
+//       value: state.value - payload,
+//     };
+//   } else {
+//     return state;
+//   }
+// };
 
-decrementEl.addEventListener("click", () => {
-  store.dispatch({
-    type: "decrement",
-    payload: 7,
-  });
-});
+// const store = Redux.createStore(createReducer);
 
-const render = () => {
-  const { value } = store.getState();
-  counterEl.innerText = value.toString();
-};
+// // Event Listening - Dispatch
+// incrementEl.addEventListener("click", () => {
+//   store.dispatch({
+//     type: "increment",
+//     payload: 5,
+//   });
+// });
 
-store.subscribe(render);
+// decrementEl.addEventListener("click", () => {
+//   store.dispatch({
+//     type: "decrement",
+//     payload: 7,
+//   });
+// });
+
+// const render = () => {
+//   const { value } = store.getState();
+//   counterEl.innerText = value.toString();
+// };
+
+// store.subscribe(render);
