@@ -2,51 +2,34 @@
 const counterEl = document.getElementById("counter");
 const incrementEl = document.getElementById("increment");
 const decrementEl = document.getElementById("decrement");
-const counter2El = document.getElementById("counter2");
-const increment2El = document.getElementById("increment2");
-const decrement2El = document.getElementById("decrement2");
 
-// Initialize Counter value
+// Initialize Counter
 let count = 0;
 
-const counterEvent = ({ elem, text, ui }) => {
+// Create a Function called Counter Event
+const counterEvent = ({ elem, ui, incDec }) => {
   elem.addEventListener("click", () => {
-    if (text === "+") {
-      count++;
-      ui.innerText = count;
-    } else if (text === "-") {
-      count--;
-      ui.innerText = count;
+    if (incDec === "+") {
+      ui.innerText = count++;
+    } else if (incDec === "-") {
+      ui.innerText = count--;
     } else {
-      alert("Please valid Parameter");
+      alert('Enter right parameter');
     }
   });
 };
 
 const increment = {
   elem: incrementEl,
-  text: "+",
-  ui: counterEl
-};
+  ui: counterEl,
+  incDec: "+"
+}
 
 const decrement = {
   elem: decrementEl,
-  text: "-",
-  ui: counterEl
-};
-const increment2 = {
-  elem: increment2El,
-  text: "+",
-  ui: counter2El
-};
-
-const decrement2 = {
-  elem: decrement2El,
-  text: "-",
-  ui: counter2El
-};
+  ui: counterEl,
+  incDec: "-"
+}
 
 counterEvent(increment);
 counterEvent(decrement);
-counterEvent(increment2);
-counterEvent(decrement2);
