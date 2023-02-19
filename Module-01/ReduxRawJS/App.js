@@ -12,17 +12,17 @@ const initializeValue = {
   value: 0,
 }
 
-const increment = () => {
+const increment = (value) => {
   return {
     type: INCREMENT,
-    payload: 5
+    payload: value
   }
 }
 
-const decrement = () => {
+const decrement = (value) => {
   return {
     type: DECREMENT,
-    payload: 5
+    payload: value
   }
 }
 
@@ -48,11 +48,11 @@ const store = Redux.createStore(createReducer);
 
 // Action dispatch
 incrementEl.addEventListener('click', () => {
-  store.dispatch(increment())
+  store.dispatch(increment(7))
 })
 
 decrementEl.addEventListener('click', () => {
-  store.dispatch(decrement())
+  store.dispatch(decrement(9))
 })
 
 // Store subscribe
@@ -60,6 +60,8 @@ const render = () => {
   const state = store.getState();
   counterEl.innerText = state.value;
 }
+
+render()
 
 store.subscribe(render)
 
