@@ -55,4 +55,13 @@
 // container.append(newDiv)
 
 const todoTitle = document.getElementById('todo-title');
-console.log(todoTitle);
+
+todoTitle.addEventListener('mouseenter', (e) => {
+  console.log(e);
+})
+
+
+const inputF = document.querySelector('input[type="text"]');
+inputF.addEventListener('input', (e) => {
+  console.log(e.target.value);
+})

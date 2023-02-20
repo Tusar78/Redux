@@ -1,8 +1,10 @@
 // Get Dom Element
 const deleteBtn = document.querySelector('.lws-delete');
 const matchName = document.querySelector('.lws-matchName');
-const incrementF = document.querySelector('.lws-increment');
-const decrementF = document.querySelector('.lws-decrement');
+const incrementForm = document.querySelector('.incrementForm');
+const incrementField = document.querySelector('.lws-increment');
+const decrementForm = document.querySelector('.decrementForm');
+const decrementField = document.querySelector('.lws-decrement');
 const matchResult = document.querySelector('.lws-singleResult');
 const addMatchBtn = document.querySelector('.lws-addMatch');
 const resetBtn = document.querySelector('.lws-reset');
@@ -53,19 +55,19 @@ const createReducer = (state = initialState, action) => {
 // Create store
 const store = Redux.createStore(createReducer);
 
-incrementF.addEventListener('keyup', (event) => {
+incrementForm.addEventListener('submit', (event) => {
   event.preventDefault();
-  console.log(event.key);
-  // let incValue = +incrementF.value;
-  // store.dispatch(increment(incValue));
-  console.log(event);
+})
+
+incrementField.addEventListener('keyup', (event) => {
   if (event.key === "Enter") {
-    event.preventDefault() 
+    let incValue = +incrementField.value;
+    store.dispatch(increment(incValue));
     console.log(incValue);
   }
 })
 
-decrementF.addEventListener('change', (event) => {
+decrementField.addEventListener('change', (event) => {
   event.preventDefault();
   let incValue = +decrementF.value;
   store.dispatch(decrement(incValue));
