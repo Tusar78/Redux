@@ -19,7 +19,18 @@ const items = document.getElementById('items');
 // console.log(lastItem);
 // lastItem.style.color = 'red';
 
-const grandParent = document.querySelector('.incomplete-task');
-const parent = grandParent.children;
-const item = parent[1].children;
-console.log(item);
+// const grandParent = document.querySelector('.incomplete-task');
+// const parent = grandParent.children;
+// const item = grandParent.querySelectorAll('.item');
+// const item2 = parent[1].children;
+// console.log(item);
+// console.log(item2);
+
+// const item = document.querySelector('.item');
+// const parent = item.parentNode;
+// console.log(parent);
+
+// const item = document.querySelector('.item');
+// const grandParent = item.closest('.incomplete-task');
+// console.log(grandParent);
+
