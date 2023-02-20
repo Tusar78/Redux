@@ -1,6 +1,6 @@
-const todoTitle = document.getElementById('todo-title');
+// const todoTitle = document.getElementById('todo-title');
 
-const items = document.getElementById('items');
+// const items = document.getElementById('items');
 // console.log(items);
 // const listItem = items.getElementsByClassName('item')
 // for (let i = 0; i < listItem.length; i++) {
@@ -38,18 +38,21 @@ const items = document.getElementById('items');
 // const firstItem = secondItem.previousElementSibling;
 // firstItem.style.color = 'green';
 
-const container = document.querySelector('.incomplete-task');
-const h3Element = container.querySelector('h3');
-console.log(h3Element);
+// const container = document.querySelector('.incomplete-task');
+// const h3Element = container.querySelector('h3');
+// console.log(h3Element);
 
-const newDiv = document.createElement('div');
-newDiv.className = 'new-div';
+// const newDiv = document.createElement('div');
+// newDiv.className = 'new-div';
 
-newDiv.setAttribute('id', 'new-div');
-newDiv.setAttribute('title', 'New Div Element');
+// newDiv.setAttribute('id', 'new-div');
+// newDiv.setAttribute('title', 'New Div Element');
 
-newDiv.textContent = 'New Div Element';
+// newDiv.textContent = 'New Div Element';
 
-container.insertBefore(newDiv, h3Element);
+// container.insertBefore(newDiv, h3Element);
 
-container.append(newDiv)
+// container.append(newDiv)
+
+const todoTitle = document.getElementById('todo-title');
+console.log(todoTitle);
