@@ -34,3 +34,22 @@ const items = document.getElementById('items');
 // const grandParent = item.closest('.incomplete-task');
 // console.log(grandParent);
 
+// const secondItem = document.querySelector('.item').nextElementSibling;
+// const firstItem = secondItem.previousElementSibling;
+// firstItem.style.color = 'green';
+
+const container = document.querySelector('.incomplete-task');
+const h3Element = container.querySelector('h3');
+console.log(h3Element);
+
+const newDiv = document.createElement('div');
+newDiv.className = 'new-div';
+
+newDiv.setAttribute('id', 'new-div');
+newDiv.setAttribute('title', 'New Div Element');
+
+newDiv.textContent = 'New Div Element';
+
+container.insertBefore(newDiv, h3Element);
+
+container.append(newDiv)
