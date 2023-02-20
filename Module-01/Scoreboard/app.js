@@ -53,12 +53,19 @@ const createReducer = (state = initialState, action) => {
 // Create store
 const store = Redux.createStore(createReducer);
 
-incrementF.addEventListener('change', () => {
+incrementF.addEventListener('change', (event) => {
+  event.preventDefault();
   let incValue = +incrementF.value;
   store.dispatch(increment(incValue));
+  console.log(event);
+  if (event.key === "Enter") {
+    event.preventDefault(); 
+    console.log(incValue);
+  }
 })
 
-decrementF.addEventListener('change', () => {
+decrementF.addEventListener('change', (event) => {
+  event.preventDefault();
   let incValue = +decrementF.value;
   store.dispatch(decrement(incValue));
 })
