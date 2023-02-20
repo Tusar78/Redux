@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Counter Application</title>
+    <script src="https://unpkg.com/redux@latest/dist/redux.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="w-screen h-screen p-10 bg-gray-100 text-slate-700 relative">
+      <!-- header -->
+      <h1 id="todo-title" class="max-w-md mx-auto text-center text-2xl font-bold mb-8 uppercase">
+        To Do Application
+      </h1>
+
+      <!-- counters -->
+      <div
+        class="w-full max-w-screen-md border p-8 border-slate-200 rounded-md mx-auto"
+      >
+        <div class="rounded-md bg-purple-100 py-4">
+          <form class="flex justify-center gap-2">
+            <input
+              type="text"
+              class="border rounded-md border-slate-200 px-4 py-2 outline-none shadow-md"
+            />
+            <button
+              type="button"
+              class="bg-white text-purple-500 font-bold px-5 py-2 rounded shadow-md"
+            >
+              Add New
+            </button>
+          </form>
+        </div>
+
+        <div class="mt-8 gap-4 flex flex-col justify-between bg-purple-100 p-4 rounded-lg md:flex-row md:gap-0">
+          <div class="p-3 border bg-white shadow-md rounded-md">
+            <h3 class="text-blue-600 font-medium text-center text-xl border-b mb-3">Incomplete Task</h3>
+            <ul class="list-none items" id="items">
+              <li class="item flex items-center border-b py-2">
+                <input type="checkbox" name="" id="myCheck1">
+                <label for="myCheck1" class="ml-1">Task Name</label>
+                <button type="button" class="ml-6 px-2 bg-blue-200 text-blue-500 rounded">Update</button>
+              </li>
+              <li class="item flex items-center border-b py-2">
+                <input type="checkbox" name="" id="myCheck2">
+                <label for="myCheck2" class="ml-1">Task Name</label>
+                <button type="button" class="ml-6 px-2 bg-blue-200 text-blue-500 rounded">Update</button>
+              </li>
+              <li class="item flex items-center py-2">
+                <input type="checkbox" name="" id="myCheck3">
+                <label for="myCheck3" class="ml-1">Task Name</label>
+                <button type="button" class="ml-6 px-2 bg-blue-200 text-blue-500 rounded">Update</button>
+              </li>
+            </ul>
+          </div>
+          <div class="p-3 border bg-white shadow-md rounded-md">
+            <h3 class="text-blue-600 font-medium text-center text-xl border-b mb-3">Complete Task</h3>
+            <ul class="list-none space-y-3">
+              <li class=" item flex items-center  py-2">
+                <input type="checkbox" name="" id="myCheck4">
+                <label for="myCheck4" class="ml-1">Task Name</label>
+                <button type="button" class="ml-6 px-2 bg-red-300 text-red-600 rounded">Delete</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="mask"></section>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

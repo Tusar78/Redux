@@ -53,13 +53,14 @@ const createReducer = (state = initialState, action) => {
 // Create store
 const store = Redux.createStore(createReducer);
 
-incrementF.addEventListener('change', (event) => {
+incrementF.addEventListener('keyup', (event) => {
   event.preventDefault();
-  let incValue = +incrementF.value;
-  store.dispatch(increment(incValue));
+  console.log(event.key);
+  // let incValue = +incrementF.value;
+  // store.dispatch(increment(incValue));
   console.log(event);
   if (event.key === "Enter") {
-    event.preventDefault(); 
+    event.preventDefault() 
     console.log(incValue);
   }
 })
