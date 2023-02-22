@@ -21,4 +21,4 @@ const counterReducer = (state = initialState, action) => {
   }
 };
 
-export { counterReducer };
+export default counterReducer;
