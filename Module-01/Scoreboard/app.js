@@ -1,12 +1,13 @@
 // Get Dom Element
-const deleteBtn = document.querySelector(".lws-delete");
+const deleteBtn = document.querySelectorAll(".lws-delete");
 const matchName = document.querySelector(".lws-matchName");
-const incrementField = document.querySelector(".lws-increment");
-const decrementField = document.querySelector(".lws-decrement");
+const incrementField = document.querySelectorAll(".lws-increment");
+const decrementField = document.querySelectorAll(".lws-decrement");
 const matchResult = document.querySelector(".lws-singleResult");
 const addMatchBtn = document.querySelector(".lws-addMatch");
 const resetBtn = document.querySelector(".lws-reset");
 const allMatches = document.querySelector(".all-matches");
+// const matches = document.querySelectorAll(".match");
 
 // Identifiers
 const INCREMENT = "increment";
@@ -36,6 +37,15 @@ const decrement = (value) => {
 
 // Create Reducer
 const createReducer = (state = initialState, action) => {
+  if (action.type === "reset") {
+    return state.map((st) => ({ value: 0 }));
+  }
+  if (action.type === "delete") {
+    const index = action.payload.index;
+    const updatedState = [...state];
+    updatedState.splice(index, 1);
+    return updatedState;
+  }
   if (action.type === "addMatch") {
     const newState = [...state, { value: 0 }]; // [{value: 0}, {value: 0}, {value:0}, {value:0}, {value:0}]
     console.log(newState);
@@ -56,7 +66,10 @@ const createReducer = (state = initialState, action) => {
   } else if (action.type === "decrement") {
     console.log(action);
     const matchElement = { ...state[action.payload.index] };
-    matchElement.value -= action.payload.value;
+    matchElement.value =
+      matchElement.value - action.payload.value < 0
+        ? 0
+        : matchElement.value - action.payload.value;
     const currState = [...state];
     currState[action.payload.index] = matchElement;
     return currState;
@@ -75,6 +88,30 @@ const store = Redux.createStore(createReducer);
 const incrementForm = document.querySelectorAll(".incrementForm");
 const decrementForm = document.querySelectorAll(".decrementForm");
 console.log(incrementForm);
+
+incrementForm[incrementForm.length - 1].addEventListener("submit", (event) => {
+  // console.log("Increment Form event", event.target.querySelector('input').value);
+  // console.log("Increment Form event", i);
+  event.preventDefault();
+  let incValue = +incrementField[incrementField.length - 1].value;
+  // let incValue = event.target.querySelector('input').value;
+  console.log("Inc Value: ", incValue);
+  console.log("Store length: ", store.getState().length);
+  store.dispatch(increment({ value: incValue, index: 0 }));
+  console.log(incValue);
+  incrementField[decrementField.length - 1].value = "";
+});
+
+decrementForm[decrementForm.length - 1].addEventListener("submit", (event) => {
+  // console.log("Increment Form event", event.target.querySelector('input').value);
+  // console.log("Increment Form event", i);
+  event.preventDefault();
+  let decValue = +decrementField[decrementField.length - 1].value;
+  // let incValue = event.target.querySelector('input').value;
+  console.log("Store length: ", store.getState().length);
+  store.dispatch(decrement({ value: decValue, index: 0 }));
+  decrementField[decrementField.length - 1].value = "";
+});
 
 // for (let i = 0; i < incrementForm.length; i++) {
 //   incrementForm[i].addEventListener("submit", (event) => {
@@ -100,10 +137,12 @@ console.log(incrementForm);
 
 // Subscribe Function
 const render = () => {
-  const matchResult = document.querySelector(".lws-singleResult");
+  const matchResult = document.querySelectorAll(".lws-singleResult");
   const state = store.getState();
   console.log("Subscribe State: ", state);
-  matchResult.innerText = state.value;
+  for (let i = 0; i < matchResult.length; i++) {
+    matchResult[i].innerText = state[i].value;
+  }
   // if (state.length > 1) {
   //   addNewMatchInDom();
   // }
@@ -113,6 +152,7 @@ render();
 store.subscribe(render);
 
 function addNewMatchInDom() {
+  let index = store.getState().length - 1;
   const match = document.createElement("div");
   match.className = "match";
   match.innerHTML = `
@@ -120,7 +160,7 @@ function addNewMatchInDom() {
     <button class="lws-delete">
       <img src="./image/delete.svg" alt="" />
     </button>
-    <h3 class="lws-matchName">Match 1</h3>
+    <h3 class="lws-matchName">Match ${index + 1}</h3>
   </div>
   <div class="inc-dec">
     <form class="incrementForm">
@@ -143,30 +183,79 @@ function addNewMatchInDom() {
   const decrementForm = document.querySelectorAll(".decrementForm");
   const incrementField = document.querySelectorAll(".lws-increment");
   const decrementField = document.querySelectorAll(".lws-decrement");
+  const deleteBtn = document.querySelectorAll(".lws-delete");
 
-  for (let i = 0; i < incrementForm.length; i++) {
-    incrementForm[i].addEventListener("submit", (event) => {
-      console.log("Increment Form event");
+  // const onSubmitClick = (event, i) => {
+  //   // console.log("Increment Form event", event.target.querySelector('input').value);
+  //   // console.log("Increment Form event", i);
+  //   event.preventDefault();
+  //   let incValue = +incrementField[i].value;
+  //   // let incValue = event.target.querySelector('input').value;
+  //   console.log("Inc Value: ", incValue);
+  //   store.dispatch(increment({ value: incValue, index: i }));
+  //   console.log(incValue);
+  //   incrementField.value = "";
+  // };
+
+  console.log("Last Increment Form: ", incrementForm[incrementForm.length - 1]);
+
+  incrementForm[incrementForm.length - 1].addEventListener(
+    "submit",
+    (event) => {
+      // console.log("Increment Form event", event.target.querySelector('input').value);
+      // console.log("Increment Form event", i);
       event.preventDefault();
-      let incValue = +incrementField[i].value;
+      let incValue = +incrementField[incrementField.length - 1].value;
+      // let incValue = event.target.querySelector('input').value;
       console.log("Inc Value: ", incValue);
-      store.dispatch(increment({ value: incValue, index: i }));
+      console.log("Store length: ", store.getState().length);
+      store.dispatch(increment({ value: incValue, index: index }));
       console.log(incValue);
-      incrementField.value = "";
-    });
-  }
+      incrementField[incrementField.length - 1].value = "";
+    }
+  );
 
-  for (let i = 0; i < decrementForm.length; i++) {
-    decrementForm[i].addEventListener("submit", (event) => {
-      console.log("Decrement Form event");
+  decrementForm[decrementForm.length - 1].addEventListener(
+    "submit",
+    (event) => {
+      // console.log("Increment Form event", event.target.querySelector('input').value);
+      // console.log("Increment Form event", i);
       event.preventDefault();
-      let decValue = +decrementField[i].value;
+      let decValue = +decrementField[decrementField.length - 1].value;
+      // let incValue = event.target.querySelector('input').value;
       console.log("Dec Value: ", decValue);
-      store.dispatch(decrement({ value: decValue, index: i }));
+      console.log("Store length: ", store.getState().length);
+      store.dispatch(decrement({ value: decValue, index: index }));
       console.log(decValue);
-      decrementField.value = "";
-    });
-  }
+      decrementField[decrementField.length - 1].value = "";
+    }
+  );
+
+  deleteBtn[deleteBtn.length - 1].addEventListener("click", () => {
+    const matches = document.querySelectorAll(".match");
+    matches[index].remove();
+    store.dispatch({ type: "delete", payload: {index: index} });
+  });
+
+  // for (let i = 0; i < incrementForm.length; i++) {
+  //   incrementForm[i].removeEventListener("submit", onSubmitClick);
+  // }
+
+  // for (let i = 0; i < incrementForm.length; i++) {
+  //   incrementForm[i].addEventListener("submit", (event) => onSubmitClick(event, i));
+  // }
+
+  // for (let i = 0; i < decrementForm.length; i++) {
+  //   decrementForm[i].addEventListener("submit", (event) => {
+  //     console.log("Decrement Form event");
+  //     event.preventDefault();
+  //     let decValue = +decrementField[i].value;
+  //     console.log("Dec Value: ", decValue);
+  //     store.dispatch(decrement({ value: decValue, index: i }));
+  //     console.log(decValue);
+  //     decrementField.value = "";
+  //   });
+  // }
 }
 
 addMatchBtn.addEventListener("click", () => {
@@ -223,4 +312,8 @@ addMatchBtn.addEventListener("click", () => {
   //     decrementField.value = "";
   //   });
   // }
+});
+
+resetBtn.addEventListener("click", () => {
+  store.dispatch({ type: "reset" });
 });
