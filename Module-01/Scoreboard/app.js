@@ -151,6 +151,12 @@ const render = () => {
 render();
 store.subscribe(render);
 
+deleteBtn[deleteBtn.length - 1].addEventListener("click", () => {
+  const matches = document.querySelectorAll(".match");
+  matches[0].remove();
+  store.dispatch({ type: "delete", payload: {index: 0} });
+});
+
 function addNewMatchInDom() {
   let index = store.getState().length - 1;
   const match = document.createElement("div");
