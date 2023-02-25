@@ -1,7 +1,7 @@
 import { DECREMENT, INCREMENT } from "./actionTypes";
 
 const initialState = {
-  value: 0,
+  value: 10,
 };
 
 const createReducer = (state = initialState, action) => {

@@ -1,8 +1,8 @@
 import React from "react";
 
-const ShowCount = () => {
+const ShowCount = ({count}) => {
   return (
-    <span class="inline-block text-2xl font-semibold" id="counter">0</span>
+    <span className="inline-block text-2xl font-semibold" id="counter">{count}</span>
   );
 };
 

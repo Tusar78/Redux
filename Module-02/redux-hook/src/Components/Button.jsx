@@ -2,7 +2,7 @@ import React from "react";
 
 const Button = ({ children, classes}) => {
   return (
-    <button class={classes}>
+    <button className={classes}>
       {children}
     </button>
   );
