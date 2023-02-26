@@ -2,6 +2,7 @@ import React from "react";
 import { Provider } from "react-redux";
 import Counter from "./components/Counter";
 import DynamicCounter from "./components/DynamicCounter";
+import UserName from "./components/UserName";
 import store from "./redux/store";
 
 const App = () => {
@@ -11,6 +12,7 @@ const App = () => {
         <h1 className="max-w-md mx-auto text-center text-2xl font-bold todo-title">
           Simple Counter Application
         </h1>
+        <UserName />
         <Counter />
         <DynamicCounter />
       </div>
