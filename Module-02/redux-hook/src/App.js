@@ -1,6 +1,7 @@
 import React from "react";
 import { Provider } from "react-redux";
 import Counter from "./components/Counter";
+import DynamicCounter from "./components/DynamicCounter";
 import store from "./redux/store";
 
 const App = () => {
@@ -11,6 +12,7 @@ const App = () => {
           Simple Counter Application
         </h1>
         <Counter />
+        <DynamicCounter />
       </div>
     </Provider>
   );
