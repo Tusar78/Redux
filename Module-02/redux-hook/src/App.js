@@ -1,5 +1,6 @@
 import React from "react";
 import { Provider } from "react-redux";
+import ConnectCounter from "./components/ConnectCounter";
 import Counter from "./components/Counter";
 import DynamicCounter from "./components/DynamicCounter";
 import UserName from "./components/UserName";
@@ -15,6 +16,8 @@ const App = () => {
         <UserName />
         <Counter />
         <DynamicCounter />
+        <ConnectCounter />
+        <ConnectCounter dynamic />
       </div>
     </Provider>
   );
