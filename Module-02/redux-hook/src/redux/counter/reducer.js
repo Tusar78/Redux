@@ -4,22 +4,21 @@ const initialState = {
   value: 0,
 };
 
-const createReducer = (state = initialState, action) => {
-  console.log(action);
+const counterReducer = (state = initialState, action) => {
   switch (action.type) {
     case INCREMENT:
       return {
         ...state,
-        value: state.value + action.payload
+        value: state.value + 1
       }
     case DECREMENT:
       return {
         ...state,
-        value: state.value - action.payload < 0 ? 0 : state.value - action.payload
+        value: state.value - 1 < 0 ? 0 : state.value - 1
       }  
     default:
       return state;
   }
 }
 
-export default createReducer;
+export default counterReducer;
